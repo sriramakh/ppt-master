@@ -54,7 +54,7 @@ def build(slide, *, theme=None) -> None:
              fill_color=sidebar_fill, corner_radius=int(80000 * s.margin_factor))
 
     metrics = c.get("exec_metrics", [("$850M", "Revenue"), ("+23%", "Growth"), ("98%", "Retention")])
-    metric_h = sidebar_h // len(metrics)
+    metric_h = sidebar_h // max(len(metrics), 1)
 
     for i, (value, label) in enumerate(metrics):
         my = sidebar_top + i * metric_h

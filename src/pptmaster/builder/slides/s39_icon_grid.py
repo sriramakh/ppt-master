@@ -65,9 +65,22 @@ _DEFAULT_ITEMS = [
 ]
 
 
+def _normalize_item(item):
+    """Safely convert any item shape to (icon, title, desc) tuple."""
+    if isinstance(item, (list, tuple)):
+        parts = list(item)
+        return (
+            parts[0] if len(parts) > 0 else "star",
+            str(parts[1]) if len(parts) > 1 else "",
+            str(parts[2]) if len(parts) > 2 else "",
+        )
+    return ("star", str(item), "")
+
+
 def _get_items(c):
-    """Return icon-grid items from content dict (4-6 items)."""
-    return c.get("icon_grid_items", _DEFAULT_ITEMS)
+    """Return icon-grid items from content dict (4-6 items), normalized to (icon, title, desc)."""
+    raw = c.get("icon_grid_items", _DEFAULT_ITEMS)
+    return [_normalize_item(it) for it in raw]
 
 
 def _get_title(c):

@@ -48,7 +48,7 @@ def build(slide, *, theme=None) -> None:
     legend_w = SLIDE_W - legend_left - MARGIN
     legend_top = content_top + 500000
 
-    legend_colors = [t.primary, t.accent] + p
+    legend_colors = p
     legend_labels = c.get("pie_legend", ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"])
 
     for i, (label, color) in enumerate(zip(legend_labels, legend_colors)):
@@ -139,7 +139,7 @@ def _laboratory(slide, t):
     legend_w = SLIDE_W - legend_left - m
     legend_top = content_y + 600000
 
-    legend_colors = [t.primary, t.accent] + p
+    legend_colors = p
     legend_labels = c.get("pie_legend", ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"])
 
     for i, (label, color) in enumerate(zip(legend_labels, legend_colors)):
@@ -182,7 +182,7 @@ def _dashboard(slide, t):
     legend_w = SLIDE_W - legend_left - m
     legend_top = 1300000
 
-    legend_colors = [t.primary, t.accent] + p
+    legend_colors = p
     legend_labels = c.get("pie_legend", ["Cat 1", "Cat 2", "Cat 3", "Cat 4", "Cat 5"])
 
     for i, (label, color) in enumerate(zip(legend_labels, legend_colors)):

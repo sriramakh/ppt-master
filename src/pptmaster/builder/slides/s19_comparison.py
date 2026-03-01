@@ -33,7 +33,9 @@ def build(slide, *, theme=None) -> None:
     col_w = (total_w - vs_badge_w) // 2
     col_top = content_top + 100000
 
-    opt_a, opt_b = c.get("comparison_headers", ("Option A", "Option B"))
+    _headers = c.get("comparison_headers", ("Option A", "Option B"))
+    opt_a = _headers[0] if len(_headers) > 0 else "Option A"
+    opt_b = _headers[1] if len(_headers) > 1 else "Option B"
 
     # Column header cards
     add_styled_card(slide, MARGIN, col_top, col_w, 500000, theme=t, accent_color=p[0])
@@ -96,7 +98,9 @@ def _scholarly(slide, t):
                 SLIDE_W - 2 * m, 300000,
                 font_size=FONT_CAPTION, italic=True, color=t.secondary)
 
-    opt_a, opt_b = c.get("comparison_headers", ("Option A", "Option B"))
+    _headers = c.get("comparison_headers", ("Option A", "Option B"))
+    opt_a = _headers[0] if len(_headers) > 0 else "Option A"
+    opt_b = _headers[1] if len(_headers) > 1 else "Option B"
     rows = c.get("comparison_rows", [
         ("Cost", "$500K", "$350K"), ("Timeline", "6 months", "4 months"),
         ("Scale", "Enterprise", "Mid-market"), ("Support", "24/7", "Business hours"),
@@ -155,7 +159,9 @@ def _laboratory(slide, t):
     add_background(slide, t.primary)
     content_y = add_slide_title(slide, c.get("comparison_title", "Comparison"), theme=t)
 
-    opt_a, opt_b = c.get("comparison_headers", ("Option A", "Option B"))
+    _headers = c.get("comparison_headers", ("Option A", "Option B"))
+    opt_a = _headers[0] if len(_headers) > 0 else "Option A"
+    opt_b = _headers[1] if len(_headers) > 1 else "Option B"
     rows = c.get("comparison_rows", [
         ("Cost", "$500K", "$350K"), ("Timeline", "6 months", "4 months"),
         ("Scale", "Enterprise", "Mid-market"), ("Support", "24/7", "Business hours"),
@@ -220,7 +226,9 @@ def _dashboard(slide, t):
                 font_size=22, bold=True, color="#FFFFFF")
     add_gold_accent_line(slide, m, 700000, 600000, color=t.accent)
 
-    opt_a, opt_b = c.get("comparison_headers", ("Option A", "Option B"))
+    _headers = c.get("comparison_headers", ("Option A", "Option B"))
+    opt_a = _headers[0] if len(_headers) > 0 else "Option A"
+    opt_b = _headers[1] if len(_headers) > 1 else "Option B"
     rows = c.get("comparison_rows", [
         ("Cost", "$500K", "$350K"), ("Timeline", "6 months", "4 months"),
         ("Scale", "Enterprise", "Mid-market"), ("Support", "24/7", "Business hours"),

@@ -12,7 +12,7 @@ from pptmaster.builder.design_system import (
     SLIDE_W, SLIDE_H, MARGIN, CONTENT_TOP, FOOTER_TOP, col_span,
 )
 from pptmaster.builder.helpers import (
-    add_textbox, add_rect, add_circle, add_line,
+    add_textbox, add_rect, add_circle, add_line, add_block_arc,
     add_gold_accent_line, add_slide_title, add_dark_bg, add_background,
     add_styled_card, add_color_cell,
 )
@@ -86,27 +86,36 @@ def _draw_donut_gauge(
     pct_color: str = "",
     pct_size: int = 11,
 ) -> None:
-    """Draw a donut-style gauge using layered circles.
+    """Draw a donut-style gauge using block arcs to accurately show progress.
 
     Layers (bottom to top):
-      1. Full circle in track_color (gray background ring)
-      2. Full circle in fill_color (represents the "filled" portion visually)
-      3. Smaller circle in center_color (creates donut cutout)
+      1. Block arc (360°) in track_color — the empty background ring
+      2. Block arc (progress×360°) in fill_color — the filled portion
+      3. Inner circle in center_color — creates the donut hole
       4. Value text centered in the donut hole
       5. Optional label below (or above) the gauge
     """
-    # 1. Track circle (full ring background)
-    add_circle(slide, cx, cy, outer_r, fill_color=track_color)
+    progress = max(0.0, min(1.0, progress))
+    thickness = (outer_r - inner_r) / outer_r
 
-    # 2. Fill circle (same size -- the color "behind" the track)
-    #    We use this to show the accent color; the visual gauge effect
-    #    is communicated via the value/percentage text in the center.
-    add_circle(slide, cx, cy, outer_r, fill_color=fill_color)
+    # 1. Full ring background (track)
+    add_block_arc(slide, cx, cy, outer_r,
+                  fill_color=track_color,
+                  start_angle=0.0, sweep_angle=360.0,
+                  thickness=thickness)
 
-    # 3. Inner cutout to create donut
+    # 2. Partial arc fill — shows actual progress clockwise from top
+    sweep = progress * 360.0
+    if sweep > 1.0:
+        add_block_arc(slide, cx, cy, outer_r,
+                      fill_color=fill_color,
+                      start_angle=270.0, sweep_angle=sweep,
+                      thickness=thickness)
+
+    # 3. Inner circle cutout — creates the donut center
     add_circle(slide, cx, cy, inner_r, fill_color=center_color)
 
-    # 4. Value text centered
+    # 4. Value text centered in the hole
     if value_text:
         tw = inner_r * 2
         th = int(inner_r * 0.7)
@@ -158,13 +167,26 @@ def _draw_progress_ring(
     fill_color: str,
     center_color: str,
 ) -> None:
-    """Draw a ring gauge. The fill visually indicates the metric level.
-
-    Uses concentric circles: track -> fill -> center cutout.
-    """
+    """Draw a ring gauge using block arcs to accurately show the metric level."""
+    progress = max(0.0, min(1.0, progress))
     inner_r = outer_r - thickness
-    add_circle(slide, cx, cy, outer_r, fill_color=track_color)
-    add_circle(slide, cx, cy, outer_r, fill_color=fill_color)
+    arc_thickness = thickness / outer_r
+
+    # Track (full ring)
+    add_block_arc(slide, cx, cy, outer_r,
+                  fill_color=track_color,
+                  start_angle=0.0, sweep_angle=360.0,
+                  thickness=arc_thickness)
+
+    # Fill arc (shows progress)
+    sweep = progress * 360.0
+    if sweep > 1.0:
+        add_block_arc(slide, cx, cy, outer_r,
+                      fill_color=fill_color,
+                      start_angle=270.0, sweep_angle=sweep,
+                      thickness=arc_thickness)
+
+    # Center cutout
     add_circle(slide, cx, cy, inner_r, fill_color=center_color)
 
 

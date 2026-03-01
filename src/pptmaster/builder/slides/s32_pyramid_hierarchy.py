@@ -104,7 +104,7 @@ def _layered(slide, t, c):
     s = t.ux_style
     n = len(layers)
 
-    text_color = "#FFFFFF" if s.dark_mode else "#FFFFFF"
+    text_color = "#FFFFFF"  # always on colored fill
 
     area_h = FOOTER_TOP - content_y - 300000
     tier_h = (area_h - 30000 * (n - 1)) // n
@@ -544,7 +544,7 @@ def _gradient_pyramid(slide, t, c):
     s = t.ux_style
     n = len(layers)
 
-    text_color = "#FFFFFF" if s.dark_mode else "#FFFFFF"
+    text_color = "#FFFFFF"  # always on colored fill
 
     area_w = SLIDE_W - 2 * MARGIN
     area_h = FOOTER_TOP - content_y - 300000

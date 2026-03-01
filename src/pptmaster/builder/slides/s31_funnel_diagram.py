@@ -69,7 +69,7 @@ def _stacked(slide, t, c):
     max_w = SLIDE_W - 2 * MARGIN - 2200000
     min_w = max_w * 35 // 100
 
-    text_color = "#FFFFFF" if t.ux_style.dark_mode else "#FFFFFF"
+    text_color = "#FFFFFF"  # always on colored fill
 
     for i, (label, value, desc) in enumerate(stages):
         fraction = 1.0 - (i / max(n - 1, 1)) * 0.65

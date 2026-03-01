@@ -57,7 +57,7 @@ def _card_columns(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 250000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -120,7 +120,7 @@ def _list_minimal(slide, t, c):
     s = t.ux_style
     m = int(MARGIN * s.margin_factor)
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     total_w = SLIDE_W - 2 * m
     col_w = total_w // n
     board_top = content_top + 200000
@@ -183,7 +183,7 @@ def _bold_columns(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 80000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -239,7 +239,7 @@ def _floating_cards(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 300000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -309,7 +309,7 @@ def _dark_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 200000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -380,7 +380,7 @@ def _split_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     board_top = content_top + 100000
     available_h = FOOTER_TOP - board_top - 200000
 
@@ -461,7 +461,7 @@ def _geo_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 180000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -530,7 +530,7 @@ def _editorial_board(slide, t, c):
     s = t.ux_style
     m = int(MARGIN * s.margin_factor)
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     total_w = SLIDE_W - 2 * m
     col_w = total_w // n
     board_top = content_top + 300000
@@ -606,7 +606,7 @@ def _gradient_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 280000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -690,7 +690,7 @@ def _retro_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 220000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -767,7 +767,7 @@ def _creative_board(slide, t, c):
     s = t.ux_style
     m = int(MARGIN * s.margin_factor)
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = int(60000 * s.gap_factor)
     total_w = SLIDE_W - 2 * m
     col_w = (total_w - gap * (n - 1)) // n
@@ -831,7 +831,7 @@ def _scholarly_board(slide, t, c):
     s = t.ux_style
     m = int(MARGIN * s.margin_factor)
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     total_w = SLIDE_W - 2 * m
     col_w = total_w // n
     board_top = content_top + 300000
@@ -914,7 +914,7 @@ def _laboratory_board(slide, t, c):
     columns = _get_columns(c)
     p = t.palette
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = 160000
     total_w = SLIDE_W - 2 * MARGIN
     col_w = (total_w - gap * (n - 1)) // n
@@ -1012,7 +1012,7 @@ def _dashboard_board(slide, t, c):
     s = t.ux_style
     m = int(MARGIN * s.margin_factor)
 
-    n = min(len(columns), 3)
+    n = min(len(columns), 4)
     gap = int(100000 * s.gap_factor)
     total_w = SLIDE_W - 2 * m
     col_w = (total_w - gap * (n - 1)) // n
