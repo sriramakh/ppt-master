@@ -62,6 +62,9 @@ That's it. Open `earnings_q4.pptx` in PowerPoint or Keynote.
 # Full AI-powered presentation
 pptmaster ai-build --topic "..." --company "..." --theme corporate -o out.pptx
 
+# Start interactive chat to build & edit in real-time
+pptmaster chat --topic "..." --theme corporate
+
 # Build a 40-slide design template (no LLM)
 pptmaster build-template --theme technology -o tech_template.pptx
 
@@ -409,6 +412,7 @@ ppt-master/
 │   ├── composer/          # Chart, table, image renderers
 │   ├── assets/            # Color utils, icon manager
 │   ├── cli/               # Typer CLI (app.py)
+│   ├── chat/              # Chat engine (loop, session, tools)
 │   ├── web/               # Streamlit UI
 │   └── mcp_server.py      # 11-tool MCP server
 ├── templates/             # 14 pre-built 40-slide PPTX files

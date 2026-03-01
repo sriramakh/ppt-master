@@ -115,6 +115,11 @@ src/pptmaster/
 │   ├── icon_generator.py       # Icon generation utilities
 │   └── image_handler.py        # Image resize/crop/embed
 │
+├── chat/                       # ── Conversational UI ──
+│   ├── loop.py                 # Interactive slide editing loop
+│   ├── session.py              # Presentation state tracking
+│   └── tools.py                # LLM tools (add_slide, change_theme)
+│
 ├── cli/
 │   └── app.py                  # Typer CLI commands
 │
@@ -516,6 +521,22 @@ SlideComposer
 ```
 
 The builder engine (new in v2) produces better results because it constructs slides from scratch with full design control, rather than trying to fill an existing template's placeholders.
+
+---
+
+## Chat Engine (`chat/`)
+
+The chat engine provides an interactive loop for editing presentations via natural language.
+
+```text
+chat_cmd()                  # CLI entry point (app.py)
+  └── PresentationSession   # Holds state (gen_result, theme, PPTX path)
+       └── run_chat_loop()  # Interactive read-eval-print loop
+            ├── _call_with_tools() # Polls the LLM
+            └── execute_tool()     # Invokes functions in tools.py
+```
+
+`PresentationSession` wraps the AI generated `gen_result` dictionary and coordinates rebuilding the presentation. The LLM is provided with a set of tools (defined in `tools.py`) such as `add_slide`, `remove_slide`, `regenerate_slide`, `change_theme`, etc. When the LLM calls a tool, the corresponding function mutates the `gen_result` and then calls `session.rebuild()` to instantly generate an updated `output.pptx`. This allows users to incrementally refine a slide deck during an interactive chat.
 
 ---
 
