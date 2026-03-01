@@ -30,7 +30,7 @@ Thumbs.db
 icon_toolkit.pptx
 ppt-template-master/
 
-# Machine-specific Claude settings (keep commands/ but not local settings)
+# Machine-specific agent settings (commands are tracked; local settings are not)
 .claude/settings.local.json
 
 # PPTX output files — exclude ad-hoc outputs but keep production templates
