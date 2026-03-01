@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment
+.env
+.venv/
+venv/
+
+# Runtime data
+data/profiles/
+data/cache/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large binary assets (too large for git)
+icon_toolkit.pptx
+ppt-template-master/
+
+# Machine-specific Claude settings (keep commands/ but not local settings)
+.claude/settings.local.json
+
+# PPTX output files — exclude ad-hoc outputs but keep production templates
+*.pptx
+!templates/*.pptx

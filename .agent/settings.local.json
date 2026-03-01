@@ -1,0 +1,41 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"/Volumes/Seagate Expansion Drive/Seagate AI/PPT Master/ppt-template-master\" -type f -exec ls -lh {} ;)",
+      "Bash(xargs -0 ls -lh)",
+      "WebSearch",
+      "Bash(while read file)",
+      "Bash(do ls -lh \"$file\")",
+      "Bash(sort -k2)",
+      "Bash(python3:*)",
+      "Bash(pip3 install:*)",
+      "Bash(/tmp/pptx_venv/bin/python3:*)",
+      "Bash(unzip:*)",
+      "Bash(head:*)",
+      "Bash(seq 1:*)",
+      "Bash(source:*)",
+      "Bash(pip install:*)",
+      "Bash(grep:*)",
+      "Bash(.venv/bin/python:*)",
+      "Bash(rm:*)",
+      "Bash(wc:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:platform.openai.com)",
+      "Bash(\"/Volumes/Seagate Expansion Drive/Seagate AI/PPT Master/.venv/bin/python\":*)",
+      "Bash(git:*)"
+    ]
+  },
+  "mcpServers": {
+    "pptmaster": {
+      "command": "/Volumes/Seagate Expansion Drive/Seagate AI/PPT Master/.venv/bin/python",
+      "args": [
+        "-m",
+        "pptmaster.mcp_server"
+      ],
+      "cwd": "/Volumes/Seagate Expansion Drive/Seagate AI/PPT Master",
+      "env": {
+        "PYTHONPATH": "/Volumes/Seagate Expansion Drive/Seagate AI/PPT Master/src"
+      }
+    }
+  }
+}
