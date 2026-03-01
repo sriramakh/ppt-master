@@ -29,7 +29,7 @@ def build(slide, *, theme=None) -> None:
     sub_color = tint(t.primary, 0.6) if s.dark_mode else t.secondary
 
     total_w = SLIDE_W - 2 * MARGIN
-    vs_badge_w = 500000
+    vs_badge_w = 1200000  # wide enough for feature labels without word-wrapping
     col_w = (total_w - vs_badge_w) // 2
     col_top = content_top + 100000
 
