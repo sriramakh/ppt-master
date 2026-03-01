@@ -28,14 +28,14 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "4 core company values with descriptions",
         "content_keys": {
             "values_title": "string — slide title (default: 'Our Values')",
-            "values": '4 items: [["Value Name","One-sentence description"], ...]',
+            "values": '4 items: [["Value Name","One complete sentence, max 100 chars"], ...]',
         },
     },
     "team_leadership": {
         "description": "Leadership team — 4 executives with names, titles, bios",
         "content_keys": {
             "team_title": "string — slide title (default: 'Leadership Team')",
-            "team": '4 items: [["Full Name","Job Title","One-line bio"], ...]',
+            "team": '4 items: [["Full Name","Job Title","One-line bio, max 120 chars, complete sentence"], ...]',
         },
     },
     "key_facts": {
@@ -56,7 +56,7 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "5 bullet points summarizing key takeaways + 3 headline metrics",
         "content_keys": {
             "exec_title": "string — slide title (default: 'Executive Summary')",
-            "exec_bullets": "5 strings, each a full sentence",
+            "exec_bullets": "5 strings, each a complete sentence, max 130 chars each",
             "exec_metrics": '3 items: [["$850M","Revenue"], ...]',
         },
     },
@@ -71,7 +71,7 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "5-step linear process flow (left to right)",
         "content_keys": {
             "process_title": "string — slide title (default: 'Our Process')",
-            "process_steps": '5 items: [["Step Title","Short description"], ...]',
+            "process_steps": '5 items: [["Step Title (max 25 chars)","Description max 70 chars, complete sentence"], ...]',
         },
     },
     "process_circular": {
@@ -85,14 +85,14 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "5-milestone timeline/roadmap",
         "content_keys": {
             "roadmap_title": "string — slide title (default: 'Strategic Roadmap')",
-            "milestones": '5 items: [["Q1 2026","Title","Description"], ...]',
+            "milestones": '5 items: [["Q1 2026","Title max 30 chars","Description max 80 chars, complete sentence"], ...]',
         },
     },
     "swot_matrix": {
         "description": "SWOT analysis — 4 quadrants, 3 items each",
         "content_keys": {
             "swot_title": "string — slide title (default: 'SWOT Analysis')",
-            "swot": '{"strengths":["...","...","..."],"weaknesses":[...],"opportunities":[...],"threats":[...]}',
+            "swot": '{"strengths":["phrase max 90 chars","...","..."],"weaknesses":[...],"opportunities":[...],"threats":[...]} — 3 items each quadrant, each a complete phrase',
         },
     },
     "bar_chart": {
@@ -141,16 +141,16 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "Two-column layout — intro text + approach bullets on left, 2 themed sections on right",
         "content_keys": {
             "two_col_title": "string — slide title (default: 'Strategic Priorities')",
-            "approach_intro": "string, 1-2 sentences",
-            "approach_bullets": "5 strings",
-            "col2": '[{"heading":"Short-Term Goals","bullets":["b1","b2","b3","b4"]},{"heading":"Long-Term Vision","bullets":["b1","b2","b3","b4"]}]',
+            "approach_intro": "string, 1-2 complete sentences, max 160 chars",
+            "approach_bullets": "5 strings, each max 80 chars, complete phrases",
+            "col2": '[{"heading":"Short-Term Goals","bullets":["b1 max 80 chars","b2","b3","b4"]},{"heading":"Long-Term Vision","bullets":["b1","b2","b3","b4"]}]',
         },
     },
     "three_column": {
         "description": "Three pillars/columns — 3 key offerings or focus areas",
         "content_keys": {
             "pillars_title": "string — slide title (default: 'Key Focus Areas')",
-            "pillars": '3 items: [["Pillar Title","Description sentence"], ...]',
+            "pillars": '3 items: [["Pillar Title max 30 chars","Description 1-2 complete sentences max 150 chars"], ...]',
         },
     },
     "highlight_quote": {
@@ -176,7 +176,7 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "4 action items with owner and due date",
         "content_keys": {
             "next_steps_title": "string — slide title (default: 'Next Steps & Action Items')",
-            "next_steps": '4 items: [["Action Title","Description","Owner","Due Date"], ...]',
+            "next_steps": '4 items: [["Action Title max 35 chars","Description max 100 chars complete sentence","Owner","Due Date"], ...]',
         },
     },
     "call_to_action": {
@@ -192,53 +192,53 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "4-5 stage conversion funnel showing progressive narrowing",
         "content_keys": {
             "funnel_title": "string — slide title (default: 'Conversion Funnel')",
-            "funnel_stages": '4-5 items: [["Stage Name","Value/Metric","Description"], ...]',
+            "funnel_stages": '4-5 items: [["Stage Name max 25 chars","Value/Metric max 20 chars","Description max 70 chars complete sentence"], ...]',
         },
     },
     "pyramid_hierarchy": {
         "description": "4-5 layer pyramid showing hierarchical structure (top=narrow, bottom=wide)",
         "content_keys": {
             "pyramid_title": "string — slide title (default: 'Strategic Hierarchy')",
-            "pyramid_layers": '4-5 items: [["Layer Name","Description"], ...]  — first item is the top/narrow layer',
+            "pyramid_layers": '4-5 items: [["Layer Name max 25 chars","Description max 80 chars complete sentence"], ...]  — first item is the top/narrow layer',
         },
     },
     "venn_diagram": {
         "description": "2-3 overlapping circles showing relationships and synergies",
         "content_keys": {
             "venn_title": "string — slide title (default: 'Synergy Analysis')",
-            "venn_sets": '2-3 items: [["Set Label","Description"], ...]',
-            "venn_overlap": "string — what the overlap represents",
+            "venn_sets": '2-3 items: [["Set Label max 20 chars","Description max 100 chars complete sentence"], ...]',
+            "venn_overlap": "string — what the overlap represents, max 60 chars",
         },
     },
     "hub_spoke": {
         "description": "Central hub with 4-6 radiating spoke elements",
         "content_keys": {
             "hub_title": "string — slide title (default: 'Core Capabilities')",
-            "hub_center": "string — label for the central hub",
-            "hub_spokes": '4-6 items: [["Spoke Label","Description"], ...]',
+            "hub_center": "string — label for the central hub, max 25 chars",
+            "hub_spokes": '4-6 items: [["Spoke Label max 20 chars","Description max 80 chars complete sentence"], ...]',
         },
     },
     "milestone_roadmap": {
         "description": "5-7 dated milestones on a horizontal timeline path",
         "content_keys": {
             "milestone_title": "string — slide title (default: 'Project Milestones')",
-            "milestone_items": '5-7 items: [["Date","Title","Description"], ...]',
+            "milestone_items": '5-7 items: [["Date max 12 chars","Title max 30 chars","Description max 80 chars complete sentence"], ...]',
         },
     },
     "kanban_board": {
         "description": "3-column kanban board (To Do / In Progress / Done) with task cards",
         "content_keys": {
             "kanban_title": "string — slide title (default: 'Project Board')",
-            "kanban_columns": '3 dicts: [{"title":"To Do","cards":["task1","task2"]}, {"title":"In Progress","cards":[...]}, {"title":"Done","cards":[...]}]',
+            "kanban_columns": '3 dicts: [{"title":"To Do","cards":["task max 60 chars","task2"]}, {"title":"In Progress","cards":[...]}, {"title":"Done","cards":[...]}]',
         },
     },
     "matrix_quadrant": {
         "description": "2x2 matrix with labeled axes and four quadrants",
         "content_keys": {
             "matrix_title": "string — slide title (default: 'Strategic Matrix')",
-            "matrix_x_axis": "string — horizontal axis label (e.g. 'Impact')",
-            "matrix_y_axis": "string — vertical axis label (e.g. 'Effort')",
-            "matrix_quadrants": '4 items: [["Quadrant Label","Description"], ...]  — order: top-left, top-right, bottom-left, bottom-right',
+            "matrix_x_axis": "string — horizontal axis label (e.g. 'Impact'), max 20 chars",
+            "matrix_y_axis": "string — vertical axis label (e.g. 'Effort'), max 20 chars",
+            "matrix_quadrants": '4 items: [["Quadrant Label max 25 chars","Description max 100 chars complete sentence"], ...]  — order: top-left, top-right, bottom-left, bottom-right',
         },
     },
     "gauge_dashboard": {
@@ -252,16 +252,16 @@ SLIDE_CATALOG: dict[str, dict[str, Any]] = {
         "description": "4-6 icon+text cards in a grid showing key capabilities or features",
         "content_keys": {
             "icon_grid_title": "string — slide title (default: 'Key Capabilities')",
-            "icon_grid_items": '4-6 items: [["icon_name","Title","Description"], ...]  — icon_name is a keyword like "chart","shield","globe"',
+            "icon_grid_items": '4-6 items: [["icon_name","Title max 25 chars","Description max 90 chars complete sentence"], ...]  — icon_name is a keyword like "chart","shield","globe"',
         },
     },
     "risk_matrix": {
         "description": "Color-coded risk assessment grid with positioned risk items",
         "content_keys": {
             "risk_title": "string — slide title (default: 'Risk Assessment Matrix')",
-            "risk_x_label": "string — horizontal axis (e.g. 'Likelihood')",
-            "risk_y_label": "string — vertical axis (e.g. 'Impact')",
-            "risk_items": '4-6 items: [["Risk Name","low|medium|high|critical","Description"], ...]',
+            "risk_x_label": "string — horizontal axis (e.g. 'Likelihood'), max 20 chars",
+            "risk_y_label": "string — vertical axis (e.g. 'Impact'), max 20 chars",
+            "risk_items": '4-6 items: [["Risk Name max 30 chars","low|medium|high|critical","Description max 80 chars complete sentence"], ...]',
         },
     },
 }
@@ -351,6 +351,7 @@ Given a topic, company name, industry, and audience, you must:
 9. Output ONLY the JSON object — no markdown fences, no commentary.
 10. Minimum 8 slides (not counting cover/toc/dividers/thankyou), maximum 33.
 11. For every slide you select, provide a contextually appropriate title via the *_title key. Don't use generic corporate titles like 'Our Services' for non-corporate topics.
+12. NEVER truncate text with "…" or "...". Every string must be a complete sentence or phrase. If content is long, write shorter complete text — do not trail off mid-sentence. Respect the max character limits specified in each content_key description.
 """
 
 

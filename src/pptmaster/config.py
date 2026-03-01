@@ -29,6 +29,7 @@ class Settings(BaseSettings):
     llm_provider: str = "minimax"
     builder_max_tokens: int = 12000
 
+
     def ensure_dirs(self) -> None:
         """Create data directories if they don't exist."""
         for d in (self.cache_dir, self.profiles_dir, self.icons_dir):

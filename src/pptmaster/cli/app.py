@@ -335,6 +335,94 @@ def build_icon_template_cmd(
     typer.echo(f"Icon template saved: {path}")
 
 
+@app.command("chat")
+def chat_cmd(
+    topic: Optional[str] = typer.Option(None, "--topic", help="Presentation topic"),
+    company: str = typer.Option("Acme Corp", "--company", help="Company name"),
+    industry: str = typer.Option("", "--industry", help="Industry context"),
+    audience: str = typer.Option("", "--audience", help="Target audience"),
+    theme: str = typer.Option("corporate", "--theme", help="Theme key"),
+    output: Path = typer.Option("output.pptx", "-o", "--output", help="Output PPTX path"),
+    context: str = typer.Option("", "--context", help="Additional context for initial generation"),
+    provider: str = typer.Option("minimax", "--provider", help="LLM provider (minimax, openai, or any OpenAI-compatible provider)"),
+    chat_model: Optional[str] = typer.Option(None, "--chat-model", help="Override the model used in the chat loop (e.g. gpt-4o, MiniMax-M2.5)"),
+    load: Optional[Path] = typer.Option(None, "--load", help="Load a previously saved content JSON to continue editing"),
+) -> None:
+    """Build a presentation then refine it interactively through conversation.
+
+    Generates an initial presentation (same as ai-build), then enters a chat loop
+    where you can describe changes in plain English. The LLM uses tools to add/remove/
+    reorder slides, regenerate content, switch themes, and more. The PPTX is rebuilt
+    after each turn.
+
+    The same --provider is used for both initial generation and the chat loop.
+    Use --chat-model to override the model for the chat session only.
+
+    Requires the appropriate API key in your .env file:
+      PPTMASTER_OPENAI_API_KEY   (for openai)
+      PPTMASTER_MINIMAX_API_KEY  (for minimax)
+    """
+    import json as _json
+
+    from pptmaster.chat.loop import run_chat_loop
+    from pptmaster.chat.session import PresentationSession
+
+    # ── Load or generate initial content ─────────────────────────────
+    if load:
+        if not load.exists():
+            console.print(f"[red]File not found:[/red] {load}")
+            raise typer.Exit(1)
+        content_dict = _json.loads(load.read_text())
+        gen_result = content_dict
+        resolved_topic = topic or content_dict.get("content", {}).get("cover_title", "Presentation")
+        console.print(f"[green]✓[/green] Loaded content from [cyan]{load}[/cyan]")
+    else:
+        if not topic:
+            console.print("[red]Error:[/red] --topic is required (or use --load to edit an existing presentation)")
+            raise typer.Exit(1)
+
+        from pptmaster.content.builder_content_gen import generate_builder_content
+
+        console.print("[bold blue]Generating initial presentation...[/bold blue]")
+        console.print(f"  Topic:    {topic}")
+        console.print(f"  Company:  {company}")
+        console.print(f"  Theme:    {theme}")
+        console.print(f"  Provider: {provider}")
+
+        with console.status("[bold green]Generating content with AI..."):
+            gen_result = generate_builder_content(
+                topic=topic,
+                company_name=company,
+                industry=industry,
+                audience=audience,
+                additional_context=context,
+                provider=provider,
+            )
+
+        resolved_topic = topic
+        console.print(
+            f"  [green]✓[/green] AI selected {len(gen_result['selected_slides'])} slides "
+            f"in {len(gen_result['sections'])} sections"
+        )
+
+    # ── Create session and build initial PPTX ────────────────────────
+    session = PresentationSession(
+        gen_result=gen_result,
+        theme_key=theme,
+        company_name=company,
+        topic=resolved_topic,
+        output_path=output,
+        provider=provider,
+    )
+
+    with console.status("[bold magenta]Building initial PPTX..."):
+        result_path = session.rebuild()
+    console.print(f"  [green]✓[/green] Saved to [cyan]{result_path}[/cyan]")
+
+    # ── Enter chat loop ───────────────────────────────────────────────
+    run_chat_loop(session, provider=provider, model=chat_model)
+
+
 @app.command("from-content")
 def from_content_cmd(
     input_file: str = typer.Option(..., "--input", "-i", help="JSON file with content dict"),
